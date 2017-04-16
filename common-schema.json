@@ -30,10 +30,10 @@
           "type": "string"
         },
         "alternateName": {
-           "type": "string" 
+           "type": "string"
         },
         "description": {
-           "type": "string" 
+           "type": "string"
         },
         "dataProvider": {
           "type": "string"
@@ -63,9 +63,6 @@
               "type": "string"
             },
             "postOfficeBoxNumber": {
-              "type": "string"
-            },
-            "areaServed": {
               "type": "string"
             }
           }
