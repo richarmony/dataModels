@@ -6,6 +6,7 @@
   "depth": 0.4,
   "cargoVolume": 150,
   "brandName": "Contenedores Ejemplo",
+  "name": "C1",
   "modelName": "C1",
   "compliantWith": [
     "UNE-EN 840-2:2013"
