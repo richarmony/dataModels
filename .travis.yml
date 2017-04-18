@@ -4,8 +4,8 @@ install:
  - sudo apt-get -qq update
 
 before_script:
- - npm install ajv
- - npm install -g ajv-cli
+ - npm install ajv@4.11.7
+ - npm install -g ajv-cli@1.1.2
 
 python:
   - "2.7"
