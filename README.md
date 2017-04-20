@@ -46,22 +46,47 @@ Note: JSON Schemas only capture the NGSI simplified representation (`options=key
 
 Contributions should come in the form of pull requests.
 
-New data models should include:
-- A data model description based on the [data model template](https://github.com/Fiware/dataModels/blob/master/datamodel_template.md), e.g. [spec.md](https://github.com/Fiware/dataModels/blob/master/Weather/WeatherObserved/doc/spec.md) (model specifications should be stored in the doc folder of the data model)
-- A summary file (as an extract from the spec file), e.g. [README.md](https://github.com/Fiware/dataModels/blob/master/Weather/WeatherObserved/README.md)
-- A JSON Schema definition, e.g. [schama.json](https://github.com/Fiware/dataModels/blob/master/Weather/WeatherObserved/schema.json)
-- A JSON example file, e.g.  [example.json](https://github.com/Fiware/dataModels/blob/master/Weather/WeatherObserved/example.json)
+New data models should be added under a folder structured as follow:
+- `NewModel/`
+  - `doc/`
+    - `spec.md`: A data model description based on the [data model template](datamodel_template.md), e.g. [spec.md of WeatherObserved](Weather/WeatherObserved/doc/spec.md).
+  - `README.md`: A summary file (as an extract from the spec file), e.g. [README.md of WeatherObserved](Weather/WeatherObserved/README.md)
+  - `schema.json`: The JSON Schema definition, e.g. [schema.json of WeatherObserved](Weather/WeatherObserved/schema.json)
+  - `example.json`: One or more JSON example file, e.g. [example.json of WeatherObserved](Weather/WeatherObserved/example.json)
+
+The name of the folder should be match the entity type used in the JSON Schema (e.g. `NewModel`). For data models including more entities, a hierarchical folder should be used. The father folder can include common JSON schemas shared among the entities. e.g.:
+
+- `NewModel/`
+  - `doc/`
+    - `spec.md`
+  - `README.md`
+  - `newmodel-schema.json`: the common schema for the different entities.
+  - `NewModelEntityOne/`
+    - `doc/`
+      - `spec.md`
+    - `README.md`
+    - `schema.json`
+    - `example.json`
+  - `NewModelEntityTwo/`
+    - `doc/`
+      - `spec.md`
+    - `README.md`
+    - `schema.json`
+    - `example.json`
+
+
+
 
 ### Continuous integration
 To facilitate the validation of changes on existing models, and ensuring the validity of new ones, we introduced continuous integration tests. Pull requests will require the passing of continuous integration tests.
 
 Contributors of new data models, should
-- Create a new set of tests for their models and store in it in the ```test``` folder as shell script;
-- Include the set of tests in the continuous integration workflow in the ```.travis.yml``` file.
+- Create a new set of tests for their models and store in the `test` folder as a shell script;
+- Include the set of tests in the continuous integration workflow in the `.travis.yml` file.
 
 Example of integration test:
 ```
-#!/bin/sh
+# !/bin/sh
 # Tests the Weather datamodels
 
 testWeatherObserved(){
@@ -79,6 +104,10 @@ testWeatherObserved(){
 To test locally the continuous integrations scripts, you will need to install ajv client (see above) and shunit2:
 
 ```sudo apt-get install -y shunit2```
+
+To run a test, use the command as added in the `.travis.yml` file, e.g.:
+
+```sh test/ci-test-weather.sh```
 
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
