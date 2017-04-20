@@ -81,27 +81,8 @@ The name of the folder should be match the entity type used in the JSON Schema (
 To facilitate the validation of changes on existing models, and ensuring the validity of new ones, we introduced continuous integration tests. Pull requests will require the passing of continuous integration tests.
 
 Contributors of new data models, should
-- Create a new set of tests for their models and store in the `test` folder as a shell script;
-- Include the set of tests in the continuous integration workflow in the `.travis.yml` file.
-
-Example of integration test:
-
-```
-# !/bin/sh
-# Tests the Weather datamodels
-
-testWeatherObserved(){
-   # 1. check that the JSON Schema is a valid JSON Schema
-   result=`ajv compile --v5 -s Weather/WeatherObserved/schema.json -r common-schema.json -r geometry-schema.json -r Weather/weather-schema.json`
-   assertEquals "schema Weather/WeatherObserved/schema.json is valid" "${result}"
-
-   # 2. check that the JSON example is valid according to the JSON Schema
-   result=`ajv test --v5 -s Weather/WeatherObserved/schema.json -r common-schema.json -r geometry-schema.json -r Weather/weather-schema.json -d Weather/WeatherObserved/example.json --valid`
-   assertEquals "Weather/WeatherObserved/example.json passed test" "${result}"
-}
-
-# load shunit2
-```
+- Create a new set of tests for their models and store in the `test` folder as a shell script, e.g [Tests for Weather related entities](test/ci-test-weather.sh);
+- Include the set of tests in the continuous integration workflow in the [`.travis.yml`](.travis.yml) file.
 
 To test locally the continuous integrations scripts, you will need to install ajv client (see above) and shunit2:
 
