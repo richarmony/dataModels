@@ -85,6 +85,7 @@ Contributors of new data models, should
 - Include the set of tests in the continuous integration workflow in the `.travis.yml` file.
 
 Example of integration test:
+
 ```
 # !/bin/sh
 # Tests the Weather datamodels
@@ -99,7 +100,8 @@ testWeatherObserved(){
    assertEquals "Weather/WeatherObserved/example.json passed test" "${result}"
 }
 
-# load shunit2```
+# load shunit2
+```
 
 To test locally the continuous integrations scripts, you will need to install ajv client (see above) and shunit2:
 
